@@ -18,15 +18,14 @@ class ParkingGarage():
         print("Take your ticket, and enjoy your parking.\n")
     
     # Method to pay for parking.
-    # If payment is $3, then a ticket is issued and remembered so users do not pay twice upon leaving.
+    # If payment is $3, then a ticket is issued so users do not pay twice upon leaving.
     # If user would rather pay upon leaving, they have the option to do that.
-    # Allows for users to pay now, or upon leaving.
     def payForParking(self):
         print("Welcome to the Brown Trout Parking Garage! We have issued you your ticket for parking. The fee is $3.\n")
         while True:
             payment = input("You may pay now if you wish. Enter 3 to pay $3 for your ticket, or you can pay upon leaving by entering 'defer': ")
             if payment == '3':
-                print("Thank you for your payment.\n")
+                print("Thank you for your payment, you have 15min to leave.\n")
                 self.currentTicket["paid"] = True
                 break
             elif payment == "defer":
@@ -36,9 +35,11 @@ class ParkingGarage():
             else:
                 print("Please enter the correct amount, or 'defer' to pay upon leaving.\n")
     
+    # method for leaving the garage
+    # Makes sure ticket is paid for, and appends spaces back into parkingSpaces() and currentTicket()
     def leaveGarage(self):
         if self.currentTicket["paid"] == True:
-            print("Thank you for your payment. You may leave at your convenience!\n")
+            print("Thank You, have a nice day!\n")
             self.parkingSpaces.append(1)
             self.tickets.append(1)
         elif self.currentTicket["paid"] == False:
